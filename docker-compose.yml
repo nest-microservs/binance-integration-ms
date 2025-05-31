@@ -1,0 +1,15 @@
+services:
+  binance-integration-db:
+    image: postgres:17.2
+    container_name: binance-integration-db
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - ${DB_PORT}:5432
+    volumes:
+      - binance-integration-db:/var/lib/postgresql/data
+
+volumes:
+  binance-integration-db:
