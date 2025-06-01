@@ -4,8 +4,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  // output   = "../generated/prisma"
+}
+
+model transactions {
+  id        Int      @id @default(autoincrement())
+
+  status    String
+  type      String
+  amount    Float
+  currency  String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  deleted_at DateTime?
+
+  @@index([status])
+  @@index([type])
+  @@index([currency])
+  @@index([created_at])
+  @@index([updated_at])
 }
